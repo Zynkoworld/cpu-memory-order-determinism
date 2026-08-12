@@ -1,0 +1,13 @@
+{
+ "oracle_class": "compute-oracle",
+ "oracle_type": "cpu-memory-order-determinism",
+ "arch": "x86-TSO",
+ "title": "x86-TSO memory-order determinizmus-felulet",
+ "owner": "cuda",
+ "verify": "python3 verify.py",
+ "hardware_free_verify": true,
+ "publish_ready": true,
+ "measurement_byte_lock": "b329861287f1acdc251028e245e7fb7b071f714784405fd53a87653e48502dc6",
+ "summary": "1 PROVEN nondet-cella (sb) + fenced-onvalidacio + 5 MATCH-baseline; hatar: byte-lock-safe <=> fence v. nem-store-load",
+ "source": "cuda fleet/litmus_harness.c (valos x86, natix C, GIL-mentes)"
+}

@@ -1,0 +1,7 @@
+{
+ "semantic_invariant": "x86-TSO memory-order determinizmus-felulet: 1 PROVEN reorder (sb) + fenced-kontroll 0 + baseline.",
+ "byte_locks": {
+  "measurement_byte_lock": "b329861287f1acdc251028e245e7fb7b071f714784405fd53a87653e48502dc6"
+ },
+ "non_degenerate": "pontosan 1 PROVEN_NONDET_REORDER (sb) + fenced observed=false + tobbi observed=false"
+}

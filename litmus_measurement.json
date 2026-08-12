@@ -1,0 +1,10 @@
+[
+ {"op":"sb_litmus_store_buffering","iterations":524288,"forbidden_SC_count":440,"observed":true,"verdict":"PROVEN_NONDET_REORDER","boundary":"x86 TSO store-load reorder: (r0=0,r1=0) SC-tiltott, de TSO-engedett"},
+ {"op":"sb_litmus_fenced_control","iterations":524288,"forbidden_SC_count":0,"observed":false,"verdict":"MATCH_fence_serializes","boundary":"POZITIV KONTROLL: seq_cst fence -> a store-load reorder MEGSZUNIK (VART 0). Ha >0 -> harness-bug v. tores; a 0 igazolja hogy az unfenced sb (a sb_litmus_store_buffering forbidden_SC_count-ja) VALOS reorder + a hatar: byte-lock-safe <=> fence"},
+ {"op":"iriw_independent_reads","iterations":524288,"nonSC_count":0,"observed":false,"verdict":"MATCH_x86_MCA","boundary":"x86 multi-copy-atomic: nem-SC IRIW VART 0; POWER-on >0"},
+ {"op":"wrc_write_read_causality","iterations":524288,"nonMCA_count":0,"observed":false,"verdict":"MATCH_x86_baseline","boundary":"x86 MCA baseline: (r0=1,r1=1,r2=0) VART 0; POWER/ARM-on >0 = MCA-delta"},
+ {"op":"isa2_litmus","iterations":524288,"bad_count":0,"observed":false,"verdict":"MATCH_x86_baseline","boundary":"x86 baseline: VART 0; gyenge-arch-on >0 = delta"},
+ {"op":"twoplus2w_store_store","iterations":524288,"forbidden_count":0,"observed":false,"verdict":"MATCH_x86_TSO","boundary":"x86/TSO store-sorrend: (x=1,y=1) VART 0; ARM-on >0 = store-store-reorder delta"},
+ {"op":"mp_litmus_message_passing","iterations":524288,"nonSC_count":0,"observed":false,"verdict":"MATCH_x86_baseline","boundary":"x86 store-store megorzott: (r0=1,r1=0) VART 0; ARM-on >0"},
+ {"op":"lb_litmus_load_buffering","iterations":524288,"nonSC_count":0,"observed":false,"verdict":"MATCH_x86_baseline","boundary":"x86 load-store megorzott: (r0=1,r1=1) VART 0; gyenge-arch-on >0"}
+]

@@ -1,0 +1,64 @@
+{
+ "schema": "zynkogpu.cpu_memory_order_determinism.v1",
+ "arch": "x86-TSO",
+ "iterations": 524288,
+ "litmus": [
+  {
+   "op": "sb_litmus_store_buffering",
+   "verdict": "PROVEN_NONDET_REORDER",
+   "count": 440,
+   "observed": true
+  },
+  {
+   "op": "sb_litmus_fenced_control",
+   "verdict": "MATCH_fence_serializes",
+   "count": 0,
+   "observed": false
+  },
+  {
+   "op": "iriw_independent_reads",
+   "verdict": "MATCH_x86_MCA",
+   "count": 0,
+   "observed": false
+  },
+  {
+   "op": "wrc_write_read_causality",
+   "verdict": "MATCH_x86_baseline",
+   "count": 0,
+   "observed": false
+  },
+  {
+   "op": "isa2_litmus",
+   "verdict": "MATCH_x86_baseline",
+   "count": 0,
+   "observed": false
+  },
+  {
+   "op": "twoplus2w_store_store",
+   "verdict": "MATCH_x86_TSO",
+   "count": 0,
+   "observed": false
+  },
+  {
+   "op": "mp_litmus_message_passing",
+   "verdict": "MATCH_x86_baseline",
+   "count": 0,
+   "observed": false
+  },
+  {
+   "op": "lb_litmus_load_buffering",
+   "verdict": "MATCH_x86_baseline",
+   "count": 0,
+   "observed": false
+  }
+ ],
+ "determinism_surface": {
+  "regime_map": "x86 TSO: CSAK store-load reorder (sb PROVEN); minden mas MATCH",
+  "byte_lock_safe_iff": "fence/seq_cst hasznalva VAGY nem-store-load minta",
+  "proven_reorder_cells": [
+   "sb_litmus_store_buffering"
+  ],
+  "positive_control": "sb_litmus_fenced_control == 0 (a fence eltunteti a reordert -> onvalidalt)"
+ },
+ "source": "cuda fleet/litmus_harness.c (natix C11 stdatomic+pthreads, mag-pinnelt, fence nelkul)"
+}
