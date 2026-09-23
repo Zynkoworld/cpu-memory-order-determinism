@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""verify.py — a cpu-memory-order-determinism oracle HARDVER-NELKULI verifikacioja.
-Ujraszamolja a measurement_byte_lock-ot az anchor.json-bol + a szemantikai invarianst. exit 0 = ZOLD."""
+"""verify.py — HARDWARE-FREE verification of the cpu-memory-order-determinism oracle.
+Recomputes the measurement_byte_lock from anchor.json + the semantic invariant. exit 0 = GREEN."""
 import json, hashlib, sys
 a = json.load(open("anchor.json")); spec = json.load(open("BYTE_LOCK_SPEC.json"))
 lit = a["litmus"]
@@ -17,7 +17,7 @@ inv_ok = (len(proven) == 1 and sb is not None and "PROVEN" in sb["verdict"]
           and fenced is not None and fenced["observed"] is False)
 ok = bl_ok and inv_ok
 print(f"measurement_byte_lock: {bl[:24]}  {'OK' if bl_ok else 'MISMATCH!'}")
-print(f"invariant (1 PROVEN sb + fenced-kontroll==0 onvalidacio): {'OK' if inv_ok else 'SERULT'}")
-print(f"litmus: {len(lit)} teszt | PROVEN reorder: {[p['op'] for p in proven]} | boundary: {a['determinism_surface']['byte_lock_safe_iff']}")
-print("ZOLD" if ok else "RED")
+print(f"invariant (1 PROVEN sb + fenced-control==0 self-validation): {'OK' if inv_ok else 'BROKEN'}")
+print(f"litmus: {len(lit)} tests | PROVEN reorder: {[p['op'] for p in proven]} | boundary: {a['determinism_surface']['byte_lock_safe_iff']}")
+print("GREEN" if ok else "RED")
 sys.exit(0 if ok else 1)
