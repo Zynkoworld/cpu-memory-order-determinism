@@ -53,12 +53,12 @@
   }
  ],
  "determinism_surface": {
-  "regime_map": "x86 TSO: CSAK store-load reorder (sb PROVEN); minden mas MATCH",
-  "byte_lock_safe_iff": "fence/seq_cst hasznalva VAGY nem-store-load minta",
+  "regime_map": "x86 TSO: ONLY store-load reorder (sb PROVEN); everything else MATCH",
+  "byte_lock_safe_iff": "fence/seq_cst used OR non-store-load pattern",
   "proven_reorder_cells": [
    "sb_litmus_store_buffering"
   ],
-  "positive_control": "sb_litmus_fenced_control == 0 (a fence eltunteti a reordert -> onvalidalt)"
+  "positive_control": "sb_litmus_fenced_control == 0 (the fence eliminates the reorder -> self-validated)"
  },
- "source": "cuda fleet/litmus_harness.c (natix C11 stdatomic+pthreads, mag-pinnelt, fence nelkul)"
+ "source": "cuda fleet/litmus_harness.c (native C11 stdatomic+pthreads, core-pinned, no fence)"
 }
